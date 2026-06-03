@@ -1,0 +1,317 @@
+.invoice-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.invoice-container {
+  max-width: 900px;
+  margin: 2rem auto 4rem;
+  padding: 0 2rem;
+  flex: 1;
+  width: 100%;
+}
+
+.invoice-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.action-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.invoice-document {
+  padding: 3rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.invoice-brand h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.invoice-brand p {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+}
+
+.invoice-meta {
+  display: flex;
+  gap: 2rem;
+  text-align: right;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-item span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.meta-item strong {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.status-confirmed strong {
+  color: var(--accent-success);
+}
+
+.journey-card {
+  background: rgba(0,0,0,0.2);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
+}
+
+.journey-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.journey-card-header h3 {
+  font-size: 1.25rem;
+}
+
+.journey-route {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.route-point {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 120px;
+}
+
+.route-point .time {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.route-point .city {
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0.25rem 0;
+}
+
+.route-point .date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.route-divider {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 0 1rem;
+}
+
+.route-divider i {
+  background: var(--bg-secondary);
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+  font-size: 1.25rem;
+}
+
+.route-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: dashed 2px var(--border-color);
+  z-index: 1;
+}
+
+.invoice-details-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.passenger-details-section h4, .payment-details-section h4 {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.passenger-table {
+  background: rgba(0,0,0,0.1);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 0.75rem 1rem;
+  background: rgba(0,0,0,0.2);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--border-color);
+  align-items: center;
+}
+
+.seat-badge-small {
+  background: rgba(250, 204, 21, 0.1);
+  color: var(--accent-primary);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-align: center;
+  width: fit-content;
+}
+
+.summary-list {
+  background: rgba(0,0,0,0.1);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.total-item {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border-color);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.text-success {
+  color: var(--accent-success);
+}
+
+.payment-method-info {
+  text-align: right;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.invoice-footer-notes {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--border-color);
+}
+
+.invoice-footer-notes h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.invoice-footer-notes ul {
+  padding-left: 1.2rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.invoice-footer-notes li {
+  margin-bottom: 0.25rem;
+}
+
+.thank-you {
+  text-align: center;
+  font-weight: 600;
+  color: var(--accent-primary);
+  font-size: 1.1rem;
+}
+
+.invoice-bottom-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .printable-area {
+    background: white;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+  .invoice-wrapper {
+    min-height: auto;
+  }
+  .invoice-container {
+    margin: 0;
+    max-width: 100%;
+  }
+  /* Invert colors for printing */
+  .text-primary, .text-secondary, .text-muted { color: #333; }
+  .text-accent { color: #d97706; }
+  .border-color { border-color: #ddd; }
+  .bg-secondary, .bg-tertiary { background: #f9f9f9; }
+  .journey-card, .passenger-table, .summary-list { background: #f5f5f5; border: 1px solid #ddd; }
+}
+
+@media (max-width: 768px) {
+  .invoice-details-grid {
+    grid-template-columns: 1fr;
+  }
+  .invoice-header {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .invoice-meta {
+    text-align: left;
+    flex-wrap: wrap;
+  }
+}

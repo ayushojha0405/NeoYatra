@@ -1,0 +1,84 @@
+.about-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-content {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-content h1 {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.about-hero {
+  text-align: center;
+  padding: 4rem 2rem 1rem;
+}
+
+.about-hero p {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  margin-top: 1rem;
+}
+
+.about-card {
+  padding: 3rem;
+  width: 100%;
+}
+
+.about-lead {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.about-item {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  transition: transform var(--transition-normal);
+}
+
+.about-item:hover {
+  transform: translateY(-10px);
+  border-color: var(--border-highlight);
+}
+
+.about-icon {
+  font-size: 3rem;
+  color: var(--accent-primary);
+  margin-bottom: 1.5rem;
+  text-shadow: var(--shadow-glow);
+}
+
+.about-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.about-item p {
+  color: var(--text-muted);
+}
