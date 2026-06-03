@@ -1,91 +1,317 @@
-# NeoYatra - Enterprise MERN Monorepo
+# 🚌 NeoYatra – Real-Time Bus Booking Platform
 
-## Project Overview
-NeoYatra is a modern, responsive, and real-time bus booking application built using the MERN stack (MongoDB, Express, React, Node.js). It demonstrates core full-stack capabilities including real-time bi-directional data flow, secure authentication, and pessimistic concurrency control to prevent double-booking.
+A full-stack **MERN-based bus ticket booking system** designed with real-world software engineering practices including secure authentication, real-time seat locking, responsive UI, and scalable backend architecture.
 
-## Features
-- **Real-Time Seat Locking:** Utilizes WebSockets (`Socket.io`) to instantly lock seats across all clients during checkout.
-- **Secure Authentication:** Uses `HttpOnly` secure cookies for JWT tokens to prevent Cross-Site Scripting (XSS) attacks.
-- **Dynamic Theming:** Responsive Dark/Light mode using custom CSS variables.
-- **Robust Search:** Filter buses by route, date, and price.
-- **Admin Dashboard:** Secure analytics dashboard to manage schedules and track revenue.
+🚀 **Live Demo:** Add Frontend Deployment Link Here
+🔗 **Backend API:** Add Backend Deployment Link Here
 
-## Tech Stack
-- **Frontend:** React (Vite), React Router, Context API, Socket.io-client, Vanilla CSS (Tailwind/PostCSS config ready)
-- **Backend:** Node.js, Express.js, MongoDB (Mongoose), Socket.io, JWT, bcryptjs, Zod
-- **Architecture:** Client-Server Monorepo
+---
 
-## Project Structure
+## 📌 Project Overview
+
+NeoYatra is a modern bus reservation platform that allows users to search routes, book seats, and manage bookings seamlessly.
+
+The project focuses on implementing industry-standard concepts such as:
+
+* Real-time seat synchronization
+* Secure JWT authentication
+* RESTful API architecture
+* Pessimistic concurrency control
+* Responsive user experience
+* Scalable MERN architecture
+
+---
+
+## ✨ Features
+
+### 🎫 User Features
+
+* User Registration & Login
+* Secure JWT Authentication
+* Search Buses by Source & Destination
+* View Bus Details
+* Real-Time Seat Selection
+* Booking Confirmation
+* Booking History
+* Responsive Mobile-Friendly UI
+* Dark & Light Mode Support
+
+### ⚡ Real-Time Features
+
+* Live Seat Availability Updates
+* Instant Seat Locking During Checkout
+* Multi-user Synchronization using Socket.io
+* Prevention of Double Booking
+
+### 🛠️ Admin Features
+
+* Manage Bus Schedules
+* Monitor Bookings
+* Revenue Tracking Dashboard
+* Route Management
+
+---
+
+## 🏗️ System Architecture
+
+```text
+┌─────────────────┐
+│   React (Vite) │
+│    Frontend    │
+└────────┬────────┘
+         │
+         │ REST API + WebSockets
+         ▼
+┌─────────────────┐
+│ Express.js API │
+│    Backend     │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ MongoDB Atlas  │
+│    Database    │
+└─────────────────┘
 ```
+
+### Data Flow
+
+Frontend → REST API / Socket.io → Express Server → MongoDB Atlas
+
+---
+
+## 📸 Screenshots
+
+Create a `screenshots/` folder and add project images.
+
+```text
+screenshots/
+├── home-page.png
+├── search-results.png
+├── bus-details.png
+├── seat-selection.png
+├── booking-confirmation.png
+└── admin-dashboard.png
+```
+
+### Recommended Screenshots
+
+1. Home Page
+2. Bus Search Results
+3. Bus Details Page
+4. Seat Selection Interface
+5. Booking Confirmation
+6. Admin Dashboard
+
+Example:
+
+```md
+## Home Page
+
+![Home Page](./screenshots/home-page.png)
+
+## Seat Selection
+
+![Seat Selection](./screenshots/seat-selection.png)
+```
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+* React.js
+* Vite
+* React Router
+* Context API
+* Socket.io Client
+* Tailwind CSS
+
+### Backend
+
+* Node.js
+* Express.js
+* REST API
+* Socket.io
+
+### Database
+
+* MongoDB Atlas
+* Mongoose
+
+### Authentication & Security
+
+* JWT Authentication
+* HttpOnly Cookies
+* bcryptjs
+
+### Validation
+
+* Zod
+
+### Deployment
+
+* Vercel (Frontend)
+* Render / Railway (Backend)
+* MongoDB Atlas
+
+---
+
+## 📂 Project Structure
+
+```text
 NeoYatra/
-├── neoyatra-backend/     # Express & MongoDB Backend
-│   ├── config/           # DB connection & setup
-│   ├── controllers/      # Route logic handlers
-│   ├── middleware/       # Express middlewares (Auth, etc.)
-│   ├── models/           # Mongoose schemas
-│   ├── routes/           # API routing definitions
-│   ├── sockets/          # Socket.io event handling
-│   └── validators/       # Zod validation schemas
-├── src/                  # React Frontend
-│   ├── components/       # Reusable UI components
-│   ├── context/          # React Context (Auth, Theme)
-│   ├── pages/            # Application views
-│   └── services/         # API integration
-├── public/               # Static assets
-└── .env.example          # Frontend environment placeholders
+│
+├── neoyatra-backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── sockets/
+│   └── validators/
+│
+├── src/
+│   ├── components/
+│   ├── context/
+│   ├── pages/
+│   └── services/
+│
+├── public/
+├── screenshots/
+└── .env.example
 ```
 
-## Environment Setup
-Environment variables are managed securely and should not be committed to version control.
+---
 
-1. Create a `.env` file in the root directory (for frontend):
-   ```bash
-   cp .env.example .env
-   ```
-2. Create a `.env` file in the `neoyatra-backend` directory (for backend):
-   ```bash
-   cd neoyatra-backend
-   cp .env.example .env
-   ```
-3. Open `neoyatra-backend/.env` and replace the placeholder values with your actual secrets:
-   - `MONGO_URI`: Your MongoDB connection string
-   - `JWT_SECRET`: A secure, randomly generated string for JWT signing
-   - Other configs as required.
+## ⚙️ Environment Setup
 
-## Installation Steps
-From the root of the repository, follow these steps to install all dependencies for both the frontend and the backend.
+### Frontend
 
-1. **Install Backend Dependencies:**
-   ```bash
-   cd neoyatra-backend
-   npm install
-   ```
+```bash
+cp .env.example .env
+```
 
-2. **Install Frontend Dependencies:**
-   ```bash
-   cd ..
-   npm install
-   ```
+### Backend
 
-## Database Setup
-To populate the database with mock bus data and an admin user, you can run the seed script:
 ```bash
 cd neoyatra-backend
+cp .env.example .env
+```
+
+Configure:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+```
+
+---
+
+## 🚀 Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/your-username/NeoYatra.git
+
+cd NeoYatra
+```
+
+### Install Backend Dependencies
+
+```bash
+cd neoyatra-backend
+
+npm install
+```
+
+### Install Frontend Dependencies
+
+```bash
+cd ..
+
+npm install
+```
+
+---
+
+## 🗄 Database Seeding
+
+Populate sample bus routes and admin data.
+
+```bash
+cd neoyatra-backend
+
 node seed.js
 ```
 
-## Running the Application
+---
 
-**Running Backend:**
+## ▶️ Running Locally
+
+### Start Backend
+
 ```bash
 cd neoyatra-backend
-npm run dev
-```
-The backend server will start at `http://localhost:5000`.
 
-**Running Frontend:**
-```bash
-# From the root directory
 npm run dev
 ```
-The Vite development server will start at `http://localhost:5173`.
+
+Backend:
+
+```text
+http://localhost:5000
+```
+
+### Start Frontend
+
+```bash
+npm run dev
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## 🔒 Security Features
+
+* JWT Authentication
+* HttpOnly Cookies
+* Password Hashing with bcryptjs
+* Protected Routes
+* Request Validation using Zod
+* Secure Environment Variables
+
+---
+
+## 📈 Future Enhancements
+
+* Online Payments Integration
+* Email Notifications
+* Live Bus Tracking
+* AI-Based Route Recommendations
+* Passenger Reviews & Ratings
+* Docker & Kubernetes Deployment
+* CI/CD Pipeline Integration
+
+---
+
+## 👨‍💻 Author
+
+**Ayush Ranjan Ojha**
+
+* MERN Stack Developer
+* Full-Stack Engineering Enthusiast
+* Cloud & AI Learner
+
+---
+
+## 📜 License
+
+This project is licensed for educational and portfolio purposes.
