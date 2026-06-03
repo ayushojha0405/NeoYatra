@@ -1,119 +1,145 @@
-# 🚌 NeoYatra – Real-Time Bus Booking Platform
+# 🚌 NeoYatra – Premium Bus Booking Platform
 
-A full-stack **MERN-based bus ticket booking system** designed with real-world software engineering practices including secure authentication, real-time seat locking, responsive UI, and scalable backend architecture.
+A full-stack **MERN-based bus reservation platform** that enables users to search buses, apply filters, select seats, manage bookings, and complete reservations through a modern, responsive interface.
 
-🚀 **Live Demo:** Add Frontend Deployment Link Here
-🔗 **Backend API:** Add Backend Deployment Link Here
+🌐 **Live Demo:** https://neoyatra.vercel.app
+⚙️ **Backend API:** https://neoyatra-backend-ta7g.onrender.com/api/health
 
 ---
 
-## 📌 Project Overview
+## 🚀 Highlights
 
-NeoYatra is a modern bus reservation platform that allows users to search routes, book seats, and manage bookings seamlessly.
+* Full-Stack MERN Application
+* JWT-Based Authentication & Authorization
+* RESTful API Architecture
+* Advanced Bus Search & Filtering
+* Responsive Mobile-First Design
+* MongoDB Atlas Cloud Database
+* Production Deployment on Vercel & Render
+* Context API State Management
+* Secure Backend Validation with Zod
 
-The project focuses on implementing industry-standard concepts such as:
+---
 
-* Real-time seat synchronization
-* Secure JWT authentication
-* RESTful API architecture
-* Pessimistic concurrency control
-* Responsive user experience
-* Scalable MERN architecture
+## 📌 Overview
+
+NeoYatra is a modern bus booking system inspired by real-world travel platforms such as RedBus and AbhiBus.
+
+The platform provides an end-to-end booking workflow, allowing users to:
+
+* Register and authenticate securely
+* Search buses across routes
+* Apply advanced filters and sorting
+* Select seats and book tickets
+* Manage bookings through a personalized dashboard
+
+This project demonstrates practical full-stack engineering concepts including authentication, API development, database design, state management, deployment, and scalable application architecture.
 
 ---
 
 ## ✨ Features
 
-### 🎫 User Features
+### 👤 User Features
 
 * User Registration & Login
 * Secure JWT Authentication
-* Search Buses by Source & Destination
-* View Bus Details
-* Real-Time Seat Selection
-* Booking Confirmation
-* Booking History
-* Responsive Mobile-Friendly UI
-* Dark & Light Mode Support
+* Protected Routes
+* User Profile Management
+* Booking History Dashboard
 
-### ⚡ Real-Time Features
+### 🚌 Booking Features
 
-* Live Seat Availability Updates
-* Instant Seat Locking During Checkout
-* Multi-user Synchronization using Socket.io
-* Prevention of Double Booking
+* Search Available Buses
+* View Detailed Bus Information
+* Seat Selection System
+* Booking Confirmation Workflow
+* Booking Management
 
-### 🛠️ Admin Features
+### 🔍 Search & Filtering
 
-* Manage Bus Schedules
-* Monitor Bookings
-* Revenue Tracking Dashboard
-* Route Management
+#### Filters
+
+* Maximum Price Filter
+* WiFi Availability
+* Charging Point
+* Blanket Availability
+* Water Bottle Availability
+
+#### Sorting
+
+* Price: Low → High
+* Price: High → Low
+* Available Seats: Low → High
+* Available Seats: High → Low
+
+### 📱 Platform Features
+
+* Fully Responsive Design
+* Mobile-Friendly Interface
+* Context API State Management
+* RESTful Backend APIs
+* MongoDB Atlas Integration
+
+### 🛠 Admin Features
+
+* Admin Authentication
+* Bus Management
+* Booking Monitoring
+* Route Administration
 
 ---
 
 ## 🏗️ System Architecture
 
+![System Architecture](./screenshots/system-architecture.png)
+
+### Architecture Flow
+
 ```text
-┌─────────────────┐
-│   React (Vite) │
-│    Frontend    │
-└────────┬────────┘
-         │
-         │ REST API + WebSockets
-         ▼
-┌─────────────────┐
-│ Express.js API │
-│    Backend     │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ MongoDB Atlas  │
-│    Database    │
-└─────────────────┘
+User
+ ↓
+React Frontend (Vite)
+ ↓
+Express REST API
+ ↓
+MongoDB Atlas
 ```
 
-### Data Flow
+### Deployment Flow
 
-Frontend → REST API / Socket.io → Express Server → MongoDB Atlas
+```text
+User
+ ↓
+Vercel Frontend
+ ↓
+Render Backend
+ ↓
+MongoDB Atlas Database
+```
 
 ---
 
 ## 📸 Screenshots
 
-Create a `screenshots/` folder and add project images.
+### Landing Page
 
-```text
-screenshots/
-├── home-page.png
-├── search-results.png
-├── bus-details.png
-├── seat-selection.png
-├── booking-confirmation.png
-└── admin-dashboard.png
-```
+![Landing Page](./screenshots/landing-page.png)
 
-### Recommended Screenshots
+### Bus Search Results
 
-1. Home Page
-2. Bus Search Results
-3. Bus Details Page
-4. Seat Selection Interface
-5. Booking Confirmation
-6. Admin Dashboard
+![Bus Search](./screenshots/bus-search.png)
 
-Example:
+### Bus Details
 
-```md
-## Home Page
+![Bus Details](./screenshots/bus-details.png)
 
-![Home Page](./screenshots/home-page.png)
+### Checkout Page
 
-## Seat Selection
+![Checkout](./screenshots/checkout.png)
 
-![Seat Selection](./screenshots/seat-selection.png)
-```
+### My Bookings
+
+![My Bookings](./screenshots/my-bookings.png)
 
 ---
 
@@ -125,26 +151,21 @@ Example:
 * Vite
 * React Router
 * Context API
-* Socket.io Client
-* Tailwind CSS
+* Axios
+* CSS3
 
 ### Backend
 
 * Node.js
 * Express.js
 * REST API
-* Socket.io
+* JWT Authentication
+* bcryptjs
 
 ### Database
 
 * MongoDB Atlas
 * Mongoose
-
-### Authentication & Security
-
-* JWT Authentication
-* HttpOnly Cookies
-* bcryptjs
 
 ### Validation
 
@@ -152,9 +173,14 @@ Example:
 
 ### Deployment
 
-* Vercel (Frontend)
-* Render / Railway (Backend)
+* Vercel
+* Render
 * MongoDB Atlas
+
+### Version Control
+
+* Git
+* GitHub
 
 ---
 
@@ -163,83 +189,91 @@ Example:
 ```text
 NeoYatra/
 │
+├── public/
+│
+├── src/
+│   ├── components/
+│   ├── context/
+│   ├── pages/
+│   ├── services/
+│   └── App.jsx
+│
 ├── neoyatra-backend/
 │   ├── config/
 │   ├── controllers/
 │   ├── middleware/
 │   ├── models/
 │   ├── routes/
+│   ├── validators/
 │   ├── sockets/
-│   └── validators/
+│   ├── seed.js
+│   └── server.js
 │
-├── src/
-│   ├── components/
-│   ├── context/
-│   ├── pages/
-│   └── services/
-│
-├── public/
 ├── screenshots/
-└── .env.example
+│
+├── package.json
+└── README.md
 ```
 
 ---
 
-## ⚙️ Environment Setup
-
-### Frontend
-
-```bash
-cp .env.example .env
-```
-
-### Backend
-
-```bash
-cd neoyatra-backend
-cp .env.example .env
-```
-
-Configure:
-
-```env
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-```
-
----
-
-## 🚀 Installation
+## ⚙️ Local Setup
 
 ### Clone Repository
 
 ```bash
-git clone https://github.com/your-username/NeoYatra.git
+git clone https://github.com/ayushojha0405/NeoYatra.git
 
 cd NeoYatra
 ```
 
-### Install Backend Dependencies
+### Frontend Setup
+
+```bash
+npm install
+npm run dev
+```
+
+Frontend runs on:
+
+```text
+http://localhost:5173
+```
+
+### Backend Setup
 
 ```bash
 cd neoyatra-backend
 
 npm install
+
+npm run dev
 ```
 
-### Install Frontend Dependencies
+Backend runs on:
 
-```bash
-cd ..
+```text
+http://localhost:5000
+```
 
-npm install
+---
+
+## 🔐 Environment Variables
+
+Create a `.env` file inside the backend directory:
+
+```env
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret_key
+ADMIN_EMAIL=admin@example.com
+CORS_ORIGIN=http://localhost:5173
 ```
 
 ---
 
 ## 🗄 Database Seeding
 
-Populate sample bus routes and admin data.
+Populate sample buses and admin data:
 
 ```bash
 cd neoyatra-backend
@@ -249,56 +283,37 @@ node seed.js
 
 ---
 
-## ▶️ Running Locally
+## ☁️ Deployment
 
-### Start Backend
-
-```bash
-cd neoyatra-backend
-
-npm run dev
-```
-
-Backend:
-
-```text
-http://localhost:5000
-```
-
-### Start Frontend
-
-```bash
-npm run dev
-```
-
-Frontend:
-
-```text
-http://localhost:5173
-```
+| Component | Platform      |
+| --------- | ------------- |
+| Frontend  | Vercel        |
+| Backend   | Render        |
+| Database  | MongoDB Atlas |
 
 ---
 
 ## 🔒 Security Features
 
-* JWT Authentication
-* HttpOnly Cookies
+* JWT-Based Authentication
 * Password Hashing with bcryptjs
 * Protected Routes
 * Request Validation using Zod
-* Secure Environment Variables
+* Environment Variable Protection
+* Secure API Access Control
 
 ---
 
-## 📈 Future Enhancements
+## 🔮 Future Enhancements
 
-* Online Payments Integration
+* Online Payment Gateway Integration
+* PDF Ticket Generation
+* Booking Cancellation Workflow
+* Passenger Reviews & Ratings
 * Email Notifications
 * Live Bus Tracking
-* AI-Based Route Recommendations
-* Passenger Reviews & Ratings
-* Docker & Kubernetes Deployment
-* CI/CD Pipeline Integration
+* Docker Containerization
+* CI/CD Pipeline Automation
 
 ---
 
@@ -314,4 +329,4 @@ http://localhost:5173
 
 ## 📜 License
 
-This project is licensed for educational and portfolio purposes.
+This project is intended for educational, learning, and portfolio purposes.
