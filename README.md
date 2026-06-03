@@ -91,7 +91,7 @@ This project demonstrates practical full-stack engineering concepts including au
 
 ## 🏗️ System Architecture
 
-![System Architecture Diagram](./screenshots/system-architecture.png)
+![System Architecture Diagram](./screenshots/system_architecture.png)
 
 ### Architecture Flow
 
