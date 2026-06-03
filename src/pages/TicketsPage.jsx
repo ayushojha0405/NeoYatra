@@ -1,7 +1,7 @@
 import "./TicketsPage.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { fetchBuses } from "../services/busService";
 import { useBooking } from "../context/BookingContext";
@@ -9,6 +9,8 @@ import { useBooking } from "../context/BookingContext";
 export default function TicketsPage() {
   const { search, setSearch, setSelectedBus, setSelectedSeats, setCurrentBooking } = useBooking();
   const [maxPrice, setMaxPrice] = useState(search.maxPrice || 3000);
+  const [selectedAmenities, setSelectedAmenities] = useState([]);
+  const [sortBy, setSortBy] = useState('price-asc');
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -31,7 +33,17 @@ export default function TicketsPage() {
         if (dateParam) params.date = dateParam;
         if (maxPrice) params.maxPrice = maxPrice;
         const data = await fetchBuses(params);
-        setBuses(data);
+        const processedBuses = data.map(bus => {
+          const fare = bus.price;
+          const availableSeats = bus.totalSeats - (bus.bookedSeats?.length || 0);
+          const amenities = bus.facilities?.map(f => {
+            if (f === 'Charging') return 'Charging Point';
+            if (f === 'Water') return 'Water Bottle';
+            return f;
+          }) || [];
+          return { ...bus, fare, availableSeats, amenities };
+        });
+        setBuses(processedBuses);
       } catch (error) {
         setErrorMessage(error.response?.data?.message || "Error loading buses. Please try again.");
       } finally {
@@ -44,9 +56,31 @@ export default function TicketsPage() {
 
   const clearFilters = () => {
     setMaxPrice(3000);
+    setSelectedAmenities([]);
+    setSortBy('price-asc');
     setSearch((prev) => ({ ...prev, maxPrice: 3000 }));
     navigate(location.pathname, { replace: true });
   };
+
+  const filteredAndSortedBuses = useMemo(() => {
+    let result = buses.filter(bus => bus.fare <= maxPrice);
+
+    if (selectedAmenities.length > 0) {
+      result = result.filter(bus => 
+        selectedAmenities.every(amenity => bus.amenities.includes(amenity))
+      );
+    }
+
+    result.sort((a, b) => {
+      if (sortBy === 'price-asc') return a.fare - b.fare;
+      if (sortBy === 'price-desc') return b.fare - a.fare;
+      if (sortBy === 'seats-asc') return a.availableSeats - b.availableSeats;
+      if (sortBy === 'seats-desc') return b.availableSeats - a.availableSeats;
+      return 0;
+    });
+
+    return result;
+  }, [buses, maxPrice, selectedAmenities, sortBy]);
 
   useEffect(() => {
     setSearch((prev) => ({ ...prev, maxPrice }));
@@ -83,6 +117,46 @@ export default function TicketsPage() {
             </div>
           </div>
 
+          <div className="filter-section">
+            <div className="filter-title">
+              <span>Amenities</span>
+            </div>
+            <div className="checkbox-group">
+              {['WiFi', 'Charging Point', 'Blanket', 'Water Bottle'].map(amenity => (
+                <label key={amenity} className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    checked={selectedAmenities.includes(amenity)}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setSelectedAmenities([...selectedAmenities, amenity]);
+                      } else {
+                        setSelectedAmenities(selectedAmenities.filter(a => a !== amenity));
+                      }
+                    }}
+                  />
+                  {amenity}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div className="filter-section">
+            <div className="filter-title">
+              <span>Sort By</span>
+            </div>
+            <select
+              className="sort-dropdown"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+            >
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="seats-asc">Available Seats: Low to High</option>
+              <option value="seats-desc">Available Seats: High to Low</option>
+            </select>
+          </div>
+
           <button className="btn-secondary clear-filters-btn" onClick={clearFilters}>
             <i className="fas fa-undo"></i> Reset Filters
           </button>
@@ -115,8 +189,8 @@ export default function TicketsPage() {
               </div>
             )}
             
-            {!isLoading && !errorMessage && buses.length > 0 ? (
-              buses.map((bus, index) => (
+            {!isLoading && !errorMessage && filteredAndSortedBuses.length > 0 ? (
+              filteredAndSortedBuses.map((bus, index) => (
                 <div
                   key={bus._id}
                   className="bus-card glass-panel"
@@ -152,6 +226,20 @@ export default function TicketsPage() {
                         <span className="location">{bus.destination}</span>
                       </div>
                     </div>
+                    
+                    {bus.amenities && bus.amenities.length > 0 && (
+                      <div className="amenities-badges">
+                        {bus.amenities.map(amenity => (
+                          <span key={amenity} className="amenity-badge">
+                            {amenity === 'WiFi' && '📶'}
+                            {amenity === 'Charging Point' && '🔌'}
+                            {amenity === 'Blanket' && '🛏'}
+                            {amenity === 'Water Bottle' && '💧'}
+                            {' '}{amenity}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   
                   <div className="bus-card-divider"></div>
@@ -159,10 +247,10 @@ export default function TicketsPage() {
                   <div className="bus-card-right">
                     <div className="price-container">
                       <span className="currency">₹</span>
-                      <span className="amount">{bus.price}</span>
+                      <span className="amount">{bus.fare}</span>
                     </div>
                     <div className="seats-info">
-                      <i className="fas fa-chair"></i> {bus.totalSeats - (bus.bookedSeats?.length || 0)} seats left
+                      <i className="fas fa-chair"></i> {bus.availableSeats} seats left
                     </div>
                     <button className="btn-primary select-seat-btn">Select Seats</button>
                   </div>

@@ -25,13 +25,13 @@ const companies = [
 const types = ['AC Sleeper', 'Non-AC Sleeper', 'AC Seater', 'Non-AC Seater', 'Volvo AC Semi-Sleeper'];
 
 const facilitiesList = [
-  ['WiFi', 'Charging', 'Blanket', 'Water'],
-  ['WiFi', 'Charging'],
-  ['Charging', 'Water'],
-  ['Water'],
+  ['WiFi', 'Charging Point', 'Blanket', 'Water Bottle'],
+  ['WiFi', 'Charging Point'],
+  ['Charging Point', 'Water Bottle'],
+  ['Water Bottle'],
   ['WiFi', 'Blanket'],
-  ['Blanket', 'Water'],
-  ['WiFi', 'Charging', 'Water']
+  ['Blanket', 'Water Bottle'],
+  ['WiFi', 'Charging Point', 'Water Bottle']
 ];
 
 const generateTime = () => {
